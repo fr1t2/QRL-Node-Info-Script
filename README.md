@@ -28,6 +28,21 @@ cd QRL_Node_Info && ./QRLinfo_0.0.1.sh -v
 
 See the additional options by passing the `-h` flag to the script.
 
+```bash
+-------------------------------------
+  QRLinfo Help
+-------------------------------------
+
+Run this script with the additional flags
+Calling the script with no flags will give all output by default
+
+**********************************************
+
+-v | --verbose                        "enable additional output"
+-q | --qrl                            "Check QRL install info"
+-c | --cpu                            "Get CPU information"
+```
+
 ### Print to File
 
 Using the example above, you can pipe the output to a file, while printing to stdout.
