@@ -17,54 +17,7 @@ goMinimumVersion=1.10;
 qrlDir=/home/$user/.qrl;
 LSB=/usr/bin/lsb_release
 
-# Wipe the variables previously established
-function _ResetVariables(){
-if [ "$SUDO" != "" ];
-then
-SUDO="";
-ROOT="";
-AESenabled="";
-verbose="FALSE";
-debug=FALSE;
-LSB="";
-goVersion="";
-goInstalled="";
-goOK="";
-pyVersion="";
-pyInstalled="";
-pip3Version="";
-pip3Installed="";
-jqVersion="";
-jqInstalled="";
-gqrlInstalled="";
-gqrlRuns="";
-gqrlProcess="";
-py_qrlInstalled="";
-py_qrlRuns="";
-py_qrlVersion="";
-py_qrlProcess="";
-qrlBase="";
-qrlType="";
-qrlRuns="";
-qrlInstalled="";
-qrlBannedPeers="";
-qrlBannedPeersFile="";
-qrlKnownPeersFile="";
-qrlGenesis="";
-qrlGenesisFile="";
-check_Testnet="";
-qrlTestnet="";
-qrlConfig="";
-qrlConfigSet="";
-qrlWallet="";
-qrlWalletCount="";
-qrlWalletLocation="";
-echo -e "Resetting the script variables"
-fi
-}
 
-# Check and reset the variables if needed.
-_ResetVariables;
 
 ################################
 #     Formatting Functions     #
@@ -693,24 +646,82 @@ function GetCPUInfo() {
 }
 
 
-case $1 in
+
+  if [[ $# -eq 0 ]]; 
+  then
+      Dep_Check
+      GetUptime;
+      printf "%-35s %s\n" "Uptime:"  "  \"$uptime\""
+      GetCPUInfo
+      QRL_CHECK
+  fi
+
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
         --help|-h)
-           echo -e "QRLinfo Help"
-           echo -e "Run this script with the additional flag -v | --verbose to enable additional output"
+           header QRLinfo Help
+           echo -e "Run this script with the additional flags";
+           echo -e "Calling the script with no flags will give all output by default";
+           spacer;
+           printf "%-35s %s\n" "-v | --verbose"  "  \"enable additional output\"";
+           printf "%-35s %s\n" "-q | --qrl"  "  \"Check QRL install info\"";
+           printf "%-35s %s\n" "-c | --cpu"  "  \"Get CPU information\"";
+           exit;
         ;;
         --verbose|-v)
            verbose=true;
+
+#           GetUptime;
+#           printf "%-35s %s\n" "Uptime:"  "  \"$uptime\""
+#           GetCPUInfo
+#           QRL_CHECK
+
+        ;;
+        --qrl|-q)
+           Dep_Check
+           GetUptime;
+           printf "%-35s %s\n" "Uptime:"  "  \"$uptime\""
+           QRL_CHECK
         ;;        
-esac
 
+        --cpu|-c)
+           GetCPUInfo
+           GetUptime;
+           printf "%-35s %s\n" "Uptime:"  "  \"$uptime\""
+        ;;
+        *) 
+           header QRLinfo Help
+           echo -e "Run this script with the additional flags";
+           echo -e "Calling the script with no flags will give all output by default";
+           spacer;
+           printf "%-35s %s\n" "-v | --verbose"  "  \"enable additional output\"";
+           printf "%-35s %s\n" "-q | --qrl"  "  \"Check QRL install info\"";
+           printf "%-35s %s\n" "-c | --cpu"  "  \"Get CPU information\"";
+           exit;
+           ;;
+  esac
+  shift
+done
 
-Dep_Check;
-# Need to build out these functions into something that makes sense.
-GetUptime;
+if [ "$verbose" = true ] || [[ "$#" -gt 2 ]]; then
+    Dep_Check
+    GetUptime;
     printf "%-35s %s\n" "Uptime:"  "  \"$uptime\""
-GetCPU_Info;
-    printf "%-35s %s\n" "AES enabled CPU:"  "  \"$AESenabled\""
-QRL_CHECK;
+    GetCPUInfo
+    QRL_CHECK
+fi
+
+variablesWritten=true;
+
+
+#Dep_Check;
+# Need to build out these functions into something that makes sense.
+#GetUptime;
+#    printf "%-35s %s\n" "Uptime:"  "  \"$uptime\""
+#GetCPU_Info;
+#    printf "%-35s %s\n" "AES enabled CPU:"  "  \"$AESenabled\""
+#QRL_CHECK;
 
 
 ## Script switch cases.
