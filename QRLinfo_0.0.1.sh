@@ -138,6 +138,22 @@ function check_jq() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## To Do - assign variables here and later return the data formatted.
 function check_os_info(){
   # find release info
@@ -145,6 +161,8 @@ function check_os_info(){
   Codename=`$LSB -c |sed 's/.*://'`;
   Release=`$LSB -r |sed 's/.*://'`;
   Description=`$LSB -d |sed 's/.*://'`;
+
+
   # Print data to terminal
   subHeader " System information "
   printf "%-35s %s\n" "OS:"  "  \"$OS\""  
@@ -255,7 +273,6 @@ function check_mem_info(){
 }
 
 
-# lscpu
 function GetCPU_Info(){
 cpuInfo=`lscpu -J`
 isAES=$(lscpu |grep aes)
@@ -363,7 +380,7 @@ function check_qrl_genesis(){
   fi;
   }
 
-# Check for and print the config file. Only PYTHON curently
+# Check for and print the config file. Only PYTHON currently
 # depends on check_qrl...
 function check_qrl_config(){
   qrlConfigFile=$qrlDir/config.yml
@@ -640,13 +657,13 @@ fi
 function GetCPUInfo() {
   check_os_info
   check_host_info
-  check_net_info
+#  check_net_info # Need to finish this function, and print useful data.
   check_user_info
   check_mem_info
 }
 
 
-
+# The meat and potatoes
   if [[ $# -eq 0 ]]; 
   then
       Dep_Check
