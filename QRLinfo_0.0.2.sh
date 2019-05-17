@@ -240,7 +240,7 @@ check_qrl_config;
 
 if [ "$qrlConfigSet" = true ];
 then
-  subSubHeader QRL Config File  
+  subHeader QRL Config File  
   printf "%-35s %s\n" "QRL Config Found:"  "\"$qrlConfigSet\""
   echo -e ""
   echo -e "$qrlConfig"
