@@ -297,7 +297,26 @@ function check_qrl_wallet(){
   fi;
 }
 
+# Check for qrl_walletd
+function check_walletd(){
+  if [ -x "$(command -v qrl_walletd)" ]; 
+   then 
+      qrl_walletdInstalled=true;
+      #`go version |sed -n 's/.*\([0-9]\.[0-9][0-9]*\).*/\1/p'` 2> /dev/null;
+      qrl_walletdPID=$(pgrep -x qrl_walletd);
+    else  
+       qrl_walletdInstalled=false;
+  fi
 
-
-
-
+WalletRestProxyDir=/home/$user/go/src/github.com/theQRL/walletd-rest-proxy/
+if [ -d $WalletRestProxyDir ];
+then
+    walletdrestproxyInstalled=true;
+fi
+#Check rest proxy
+  if [ `lsof -Pi :5359 -sTCP:LISTEN -t` >/dev/null ] && [ `lsof -Pi :19010 -sTCP:LISTEN -t` >/dev/null ];
+  then
+    walletdrestproxyRunning=true;
+   fi
+  
+}

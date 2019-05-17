@@ -198,21 +198,51 @@ check_qrl_wallet;
 
 if [ "$qrlWallet" = true ];
 then
+ subHeader QRL Wallet;
  printf "%-35s %s\n" "QRL Wallet Found:"  "\"$qrlWallet\""
  printf "%-35s %s\n" "QRL Wallet Count:"  "\"$qrlWalletCount\""
- subSubHeader QRL Wallet Location\(s\);
  echo "$qrlWalletLocation"
 #else
 #   printf "%-35s %s\n" "QRL Wallet Found:"  "\"$qrlWallet\""
+fi
+
+# Check for wallet REST proxy
+#walletd-rest-proxy
+check_walletd;
+
+if [ "$qrl_walletdInstalled" = true ];
+then
+  printf "%-35s %s\n" "qrl_walletd Installed:"  "\"$qrl_walletdInstalled\""
+  printf "%-35s %s\n" "qrl_walletd PID:"  "\"$qrl_walletdPID\""
+fi
+if [ "$walletdrestproxyInstalled" = true ]
+then
+  printf "%-35s %s\n" "walletd-rest-proxy Installed"  "\"$walletdrestproxyInstalled\""  
+  if [ "$walletdrestproxyRunning" = true ];
+  then
+    printf "%-35s %s\n" "walletd-rest-proxy Running"  "\"$walletdrestproxyRunning\""  
+    printf "%-35s %s\n" "PORT 5359 is"  "\"OPEN\""  
+    printf "%-35s %s\n" "PORT 19010 is"  "\"OPEN\""  
+    printf "%-35s %s\n" "qrl walletd Wallet Found"  "\"$qrlWalletdCount\""  
+    printf "%-35s %s\n" "qrl walletd Wallet Location"  "\"$qrlWalletdLocation\""  
+
+  else
+    printf "%-35s %s\n" "walletd-rest-proxy Running"  "\"$wwalletdrestproxyRunning\""  
+  fi
+else
+  printf "%-35s %s\n" "walletd-rest-proxy Running"  "\"$walletdrestproxyInstalled\""  
 fi
 
 check_qrl_config;
 
 if [ "$qrlConfigSet" = true ];
 then
+  subSubHeader QRL Config File  
   printf "%-35s %s\n" "QRL Config Found:"  "\"$qrlConfigSet\""
-  subSubHeader Config File Contents 
-  echo "$qrlConfig"
+  echo -e ""
+  echo -e "$qrlConfig"
 #else
 #    printf "%-35s %s\n" "QRL Config Found:"  "\"$qrlConfigSet\""
 fi
+
+
