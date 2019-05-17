@@ -232,8 +232,6 @@ then
   else
     printf "%-35s %s\n" "walletd-rest-proxy Running"  "\"$wwalletdrestproxyRunning\""  
   fi
-else
-  printf "%-35s %s\n" "walletd-rest-proxy Running"  "\"$walletdrestproxyInstalled\""  
 fi
 
 check_qrl_config;
