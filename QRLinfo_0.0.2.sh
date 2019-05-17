@@ -201,7 +201,8 @@ then
  subHeader QRL Wallet;
  printf "%-35s %s\n" "QRL Wallet Found:"  "\"$qrlWallet\""
  printf "%-35s %s\n" "QRL Wallet Count:"  "\"$qrlWalletCount\""
- echo "$qrlWalletLocation"
+ echo -e "\nWallet Location:\n"
+  echo "$qrlWalletLocation"
 #else
 #   printf "%-35s %s\n" "QRL Wallet Found:"  "\"$qrlWallet\""
 fi
@@ -223,8 +224,9 @@ then
     printf "%-35s %s\n" "walletd-rest-proxy Running"  "\"$walletdrestproxyRunning\""  
     printf "%-35s %s\n" "PORT 5359 is"  "\"OPEN\""  
     printf "%-35s %s\n" "PORT 19010 is"  "\"OPEN\""  
-    printf "%-35s %s\n" "qrl walletd Wallet Found"  "\"$qrlWalletdCount\""  
-    printf "%-35s %s\n" "qrl walletd Wallet Location"  "\"$qrlWalletdLocation\""  
+    printf "%-35s %s\n" "wallet-api Wallet Found"  "\"$qrlWalletdCount\""  
+    echo -e "\nwallet-api Wallet Location:\n"
+    echo "$qrlWalletdLocation"
 
   else
     printf "%-35s %s\n" "walletd-rest-proxy Running"  "\"$wwalletdrestproxyRunning\""  

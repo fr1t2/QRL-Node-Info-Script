@@ -308,15 +308,17 @@ function check_walletd(){
        qrl_walletdInstalled=false;
   fi
 
-WalletRestProxyDir=/home/$user/go/src/github.com/theQRL/walletd-rest-proxy/
-if [ -d $WalletRestProxyDir ];
-then
+  WalletRestProxyDir=/home/$user/go/src/github.com/theQRL/walletd-rest-proxy/
+  if [ -d $WalletRestProxyDir ];
+  then
     walletdrestproxyInstalled=true;
-fi
-#Check rest proxy
+  fi
+  #Check rest proxy
   if [ `lsof -Pi :5359 -sTCP:LISTEN -t` >/dev/null ] && [ `lsof -Pi :19010 -sTCP:LISTEN -t` >/dev/null ];
   then
     walletdrestproxyRunning=true;
-   fi
-  
+  fi
+  qrlWalletdCount=$(locate -c walletd.json)
+  qrlWalletdLocation=$(locate  walletd.json)
+
 }
