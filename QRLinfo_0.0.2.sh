@@ -89,7 +89,7 @@ if ping -c 1 theqrl.org &> /dev/null;
       check_qrl_knownpeers; # this sets the variable $qrlPeers to the contents of the peer file.
       qrlPeersCount=$(echo "$qrlPeers" |wc -l);
       qrlPeersMath=$(( qrlPeersCount / 2));
-      peerIP=$(echo "$qrlPeers" |sed -n $qrlPeersMath\p |sed 's|[",]||g' | sed 's/.*://')
+      peerIP=$(echo "$qrlPeers" |sed -n $qrlPeersMath\p |sed 's|[",]||g' | sed 's/:.*//')
       printf "%-35s %s\n" "Peer IP found:"  "\"true\""  ;
       printf "%-35s %s\n" "Peer's IP:"  "\"$peerIP\""  ;
       if ping -c 1 $peerIP &> /dev/null;
