@@ -213,6 +213,7 @@ check_walletd;
 
 if [ "$qrl_walletdInstalled" = true ];
 then
+  subHeader wallet_api
   printf "%-35s %s\n" "qrl_walletd Installed:"  "\"$qrl_walletdInstalled\""
   printf "%-35s %s\n" "qrl_walletd PID:"  "\"$qrl_walletdPID\""
 fi
