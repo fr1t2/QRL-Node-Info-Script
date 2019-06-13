@@ -140,7 +140,7 @@ then
     elif [ "$qrlBase" = go ]; then
       #printf "%-35s %s\n" "Go QRL Version:"  "\"$go_qrlVersion\"";
       printf "%-35s %s\n" "Go QRL PID:"  "\"$gqrlProcess\"";
-      blockheight=`curl -s 127.0.0.1:19009/api/GetHeight |jq '.height'`;
+      blockheight=`curl -s 127.0.0.1:19009/api/GetHeight |jq '.data|.height'`
       printf "%-35s %s\n" "blockheight:"  "\"$blockheight\"";
     fi
         #statements
