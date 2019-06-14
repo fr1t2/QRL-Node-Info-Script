@@ -62,7 +62,7 @@ function check_qrl_knownpeers(){
   qrlPeersFile=$qrlDir/data/known_peers.json
   if [ -f "$qrlPeersFile" ];
   then
-    qrlPeers=$(jq '.[]' $qrlPeersFile)
+    qrlPeers=$(jq -r '.PeersInfo[].IP' $qrlPeersFile)
   else
     echo -e "No Peers File Found...";
   fi
