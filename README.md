@@ -1,6 +1,8 @@
 ## QRL Node Info Script
 
-This script is meant to be ran on the node to print useful information to the command line.
+This script is used to get information form an Ubuntu Server running a QRL node. This will print out quite a bit if information on you rOS, Server and various QRL related features.
+
+
 
 ## Usage Instructions
 

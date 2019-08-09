@@ -130,7 +130,7 @@ then
   if [ "$qrlRuns" = true ];
   then
     printf "%-35s %s\n" "QRL Runs:"  "\"$qrlRuns\"";
-    if [ "$qrlBase" = "python" ]
+    if [ "$qrlBase" = "python" ];
     then
       printf "%-35s %s\n" "Python QRL Version:"  "\"$py_qrlVersion\"";
       printf "%-35s %s\n" "Python QRL PID:"  "\"$py_qrlProcess\"";

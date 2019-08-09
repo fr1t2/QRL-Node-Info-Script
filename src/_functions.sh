@@ -184,6 +184,7 @@ function check_for_gqrl(){
     then
       gqrlRuns=true;
       gqrlProcess=`pgrep -x gqrl`;
+      gqrlVersion=`curl -s 127.0.0.1:19009/api/GetVersion |jq -r '.data.version'`
       qrlRuns=true;
     fi;
   else
